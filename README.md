@@ -10,38 +10,49 @@ You work as an analyst for the telecom operator Megaline. The company offers its
 
 You are going to carry out a preliminary analysis of the plans based on a relatively small client selection. You'll have the data on 500 Megaline clients: who the clients are, where they're from, which plan they use, and the number of calls they made and text messages they sent in 2018. Your job is to analyze clients' behavior and determine which prepaid plan is more profitable.
 
-Skills Used: Statistical Data Analysis
+> ## Description of the data
 
-## Conclusion
-The objective of this project is to analyze Megaline clients' behavior and determine which prepaid plan is more profitable based on 2018 data provided from a sample of 500 Megaline clients.
+> Megaline rounds seconds up to minutes, and megabytes to gigabytes. For calls, each individual call is rounded up: even if the call lasted just one second, it will be counted as one minute. For web traffic, individual web sessions are not rounded up. Instead, the total for the month is rounded up. If someone uses 1025 megabytes this month, they will be charged for 2 gigabytes.		
+> 																							
+> ### The users table (data on users):																									
+> * user_id — unique user identifier																									
+> * first_name — user's name																									
+> * last_name — user's last name																									
+> * age — user's age (years)																									
+> * reg_date — subscription date (dd, mm, yy)																									
+> * churn_date — the date the user stopped using the service (if the value is missing, the calling plan was being used when this database was extracted)						
+> * city — user's city of residence																									
+> * plan — calling plan name																									
 
-Below are insights discovered regarding client behavior:
-
-* Surf clients account for 68% of total clients in contrast to 36% Ultimate clients
-
-* 19% calls had a duration of 0 minutes and 13% internet sessions used 0 MB.
-
-* The average call minutes used per month are around 400 regardless of the plan
-
-* Ultimate clients are barely reaching their call minutes limit (3000 included)
-
-* Ultimate clients never exceed their call minutes included in contrast to 35% of Surf clients
-
-* Ultimate clients send an average of 46 text messages per month out of the 1000 message limit included with the plan.
-
-* Surf clients send 39 text messages per month out of the 50 message limit included with the plan.
-
-* 21% surf clients exceed their included messages and payed extra fees compared to 0% of Ultimate clients, most likely due to each plan's respective message limit.
-
-* 57% of Surf client exceed the gb included per month limit and payed extra fees compared to only 5% of Ultimate Clients.
-
-* 72% of Surf clients payed extra fees in contrast to 3% of Ultimate clients.
-
-* The average revenue for clients of the ultimate plan is \$71 whereas the average revenue for clients of the surf plan is $52
-
-* Results from the hypothesis tests indicate that there is:
-
-* no significant difference between the average revenue of NY-NJ region and other regions.
-there is a significant difference between the average monthly price of ultimate clients vs surf clients
-
-In conclusion, The Ultimate plan is more profitable for Megaline than the surf plan. Although Surf clients are much more likely to pay extra fees (72% percent vs 3% for ultimate), the median extra fees payed per client is around 40 USD , which is still less than the \$70 monthly charge that ultimate clients pay.
+> ### The calls table (data on calls):																									
+> * id — unique call identifier																									
+> * call_date — call date																									
+> * duration — call duration (in minutes)																									
+> * user_id — the identifier of the user making the call	
+> 																								
+> ### The messages table (data on texts):																									
+> * id — unique text message identifier																									
+> * message_date — text message date																									
+> * user_id — the identifier of the user sending the text	
+> 																								
+> ### The internet table (data on web sessions):																									
+> * id — unique session identifier																									
+> * mb_used — the volume of data spent during the session (in megabytes)																									
+> * session_date — web session date																									
+> * user_id — user identifier																									
+> * The plans table (data on the plans):																									
+> * plan_name — calling plan name																									
+> * usd_monthly_fee — monthly charge in US dollars																									
+> * minutes_included — monthly minute allowance																									
+> * messages_included — monthly text allowance																									
+> * mb_per_month_included — data volume allowance (in megabytes)																									
+> * usd_per_minute — price per minute after exceeding the package limits (e.g., if the package includes 100 minutes, the 101st minute will be charged)
+> * usd_per_message — price per text after exceeding the package limits																									
+> * usd_per_gb — price per extra gigabyte of data after exceeding the package limits (1 GB = 1024 megabytes)																									
+																																															
+# Libraries Used
+> * pandas
+> * matplotlib.pyplot
+> * seaborn
+> * numpy
+> * scipy
